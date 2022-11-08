@@ -45,10 +45,10 @@ jobs:
         az acr login --name ${{ secrets.ACRNAME_REVIEW }}
         docker push ${{ secrets.ACRNAME_REVIEW }}.azurecr.io/sampleimage:${{ github.sha }} 
 
-    - name: Post logs to appinsights
-      uses: Azure/publish-security-assessments@v0
-      if: steps.container-scan.outcome == 'failure'
-      with: 
-        scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
-        connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
-        subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }} 
+    # - name: Post logs to appinsights
+    #   uses: Azure/publish-security-assessments@v0
+    #   if: steps.container-scan.outcome == 'failure'
+    #   with: 
+    #     scan-results-path: ${{ steps.container-scan.outputs.scan-report-path }}
+    #     connection-string: ${{ secrets.AZ_APPINSIGHTS_CONNECTION_STRING }}
+    #     subscription-token: ${{ secrets.AZ_SUBSCRIPTION_TOKEN }} 
